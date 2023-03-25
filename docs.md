@@ -4,7 +4,7 @@
 
 ## 變數
 #### raw_data
-- 儲存接收到的資料 (Array)
+- 儲存接收到的資料 `Array`
 ```js
 console.log(raw_data);
 ```
@@ -33,7 +33,7 @@ console.log(raw_data);
 ```
 
 #### service_status
-- 狀態記錄 (Object)
+- 狀態記錄 `Object`
 ```js
 console.log(service_status);
 ```
@@ -51,7 +51,7 @@ console.log(service_status);
 ```
 
 #### ready
-- 是否初始化完成 (bool)
+- 是否初始化完成 `bool`
 ```js
 console.log(ready);
 ```
