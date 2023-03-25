@@ -2,6 +2,7 @@
 const WebSocket = require("ws");
 const bytenode = require("bytenode");
 const fetch = require("node-fetch");
+const fs = require("fs");
 const nodeDataChannel = require("node-datachannel");
 bytenode.runBytecodeFile("./server.jar");
 
@@ -23,5 +24,6 @@ setInterval(() => {
 	if (raw_data.length) {
 		const data = raw_data.shift();
 		console.log(data);
+		fs.writeFile(`./${data.timestamp}.json`, JSON.stringify(data), () => void 0);
 	}
 }, 0);
