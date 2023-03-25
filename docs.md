@@ -10,8 +10,8 @@ console.log(raw_data);
 ```
 ```json5
 [{
-	type      : "websocket", // 資料來源 (websocket、p2p)
-	verify    : true, // 資料完整性較驗 (是否被修改過)
+	type      : "websocket", // 資料來源 ( websocket、p2p )
+	verify    : true, // 資料完整性校驗 ( 是否被修改過 true=完整 false=無法確定 校驗對於網路品質要求較高 網路不佳容易遇到 false 的情況 )
 	timestamp : 1679706364870, // 接收時間
 	data      : { // 資料
 		type       : "trem-eq",
