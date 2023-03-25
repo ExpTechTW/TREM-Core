@@ -1,9 +1,9 @@
-# 模板
+# TREM-Core
 <img alt="Discord" src="https://img.shields.io/discord/926545182407688273">
 
 ------
 
-- 這是一個 ExpTech Github 模板
+- TREM-Core 讓 TREM 支援 p2p
 
 ## 索引
 - [貢獻者](#貢獻者)
