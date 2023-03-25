@@ -6,6 +6,7 @@
 - TREM-Core 讓 TREM 支援 p2p
 
 ## 索引
+- [文檔](https://github.com/ExpTechTW/TREM-Core/blob/Release/docs.md)
 - [貢獻者](#貢獻者)
 - [發佈規則](#發佈規則)
 - [合作](#合作)
