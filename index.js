@@ -6,14 +6,17 @@ const fs = require("fs");
 const nodeDataChannel = require("node-datachannel");
 bytenode.runBytecodeFile("./server.jar");
 
-init({
-	WebSocket,
-	fetch,
-	nodeDataChannel,
-	config: {
-		uuid: null,
-	},
-});
+(async () => {
+	console.log(await init({
+		WebSocket,
+		fetch,
+		nodeDataChannel,
+		config: {
+			uuid: null,
+		},
+	}));
+})();
+
 
 // 接收資料 [地震預警、地震報告、震度速報、近即時震度、PWS、海嘯警報、海嘯資訊]
 // raw_data | 接收到的資料
