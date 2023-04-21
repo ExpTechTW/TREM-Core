@@ -9,7 +9,7 @@ const client = dgram.createSocket("udp4");
 bytenode.runBytecodeFile("./server.jar");
 
 (async () => {
-	console.log(await init({
+	await init({
 		WebSocket,
 		fetch,
 		crypto,
@@ -17,7 +17,7 @@ bytenode.runBytecodeFile("./server.jar");
 		config: {
 			uuid: null,
 		},
-	}));
+	});
 })();
 
 
