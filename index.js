@@ -1,16 +1,19 @@
 /* eslint-disable no-undef */
 const WebSocket = require("ws");
 const bytenode = require("bytenode");
+const crypto = require("crypto");
+const dgram = require("dgram");
 const fetch = require("node-fetch");
 const fs = require("fs");
-const nodeDataChannel = require("node-datachannel");
+const client = dgram.createSocket("udp4");
 bytenode.runBytecodeFile("./server.jar");
 
 (async () => {
 	console.log(await init({
 		WebSocket,
 		fetch,
-		nodeDataChannel,
+		crypto,
+		client,
 		config: {
 			uuid: null,
 		},
