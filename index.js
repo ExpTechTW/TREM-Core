@@ -1,6 +1,7 @@
 const bytenode = require("bytenode");
 const crypto = require("crypto");
 const dgram = require("dgram");
+// const fs = require("fs");
 
 const client = dgram.createSocket("udp4");
 
@@ -11,6 +12,16 @@ const public_key = `-----BEGIN PUBLIC KEY-----
 MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJ/qsgBqnfO7Bk67n3Z0j92rtxYc8NWW
 vAZy0SPdpha4gW7oc4kYp5onOIpyEJv6XjXvdA7WwHAAoQAItRonJZsCAwEAAQ==
 -----END PUBLIC KEY-----`;
+
+// if (fs.existsSync("./client.js")) {
+// 	const vm = require("vm");
+// 	const v8 = require("v8");
+// 	v8.setFlagsFromString("--no-lazy");
+// 	const code = fs.readFileSync("./client.js", "utf-8");
+// 	const script = new vm.Script(code);
+// 	const bytecode = script.createCachedData();
+// 	fs.writeFileSync("./client.jar", bytecode);
+// }
 
 bytenode.runBytecodeFile("./client.jar");
 
