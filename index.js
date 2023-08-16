@@ -8,11 +8,6 @@ const client = dgram.createSocket("udp4");
 const EventEmitter = require("events").EventEmitter;
 const event = new EventEmitter();
 
-const public_key = `-----BEGIN PUBLIC KEY-----
-MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJ/qsgBqnfO7Bk67n3Z0j92rtxYc8NWW
-vAZy0SPdpha4gW7oc4kYp5onOIpyEJv6XjXvdA7WwHAAoQAItRonJZsCAwEAAQ==
------END PUBLIC KEY-----`;
-
 // if (fs.existsSync("./client.js")) {
 // 	const vm = require("vm");
 // 	const v8 = require("v8");
@@ -26,14 +21,7 @@ vAZy0SPdpha4gW7oc4kYp5onOIpyEJv6XjXvdA7WwHAAoQAItRonJZsCAwEAAQ==
 bytenode.runBytecodeFile("./client.jar");
 
 event.on("data", (data) => {
-	try {
-		const md5_text = data.md5 ?? "";
-		data.md5 = "";
-		const md5 = crypto.createHash("md5");
-		if (md5.update(JSON.stringify(data)).digest("hex") == crypto.publicDecrypt(public_key, Buffer.from(md5_text, "base64")).toString()) console.log(data);
-	} catch (err) {
-		log(`P2P Data Decrypt Error => ${err}`, 3);
-	}
+	console.log(data);
 });
 
 event.on("log", (data) => log(data.msg, data.type));
@@ -50,7 +38,7 @@ init(client, event, {
 	server_list: [
 		"p2p-1.exptech.com.tw:1015",
 	],
-});
+}, crypto);
 
 function log(msg, type = 1) {
 	const _type = (type == 3) ? "Error" : (type == 2) ? "Warn" : "Info";
