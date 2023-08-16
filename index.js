@@ -1,28 +1,28 @@
-/* eslint-disable no-undef */
 const bytenode = require("bytenode");
+const crypto = require("crypto");
 const dgram = require("dgram");
-const fetch = require("node-fetch");
-const fs = require("fs");
 
 const client = dgram.createSocket("udp4");
 
 const EventEmitter = require("events").EventEmitter;
 const event = new EventEmitter();
 
-if (fs.existsSync("./client.js")) {
-	const vm = require("vm");
-	const v8 = require("v8");
-	v8.setFlagsFromString("--no-lazy");
-	const code = fs.readFileSync("./client.js", "utf-8");
-	const script = new vm.Script(code);
-	const bytecode = script.createCachedData();
-	fs.writeFileSync("./client.jar", bytecode);
-}
+const public_key = `-----BEGIN PUBLIC KEY-----
+MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJ/qsgBqnfO7Bk67n3Z0j92rtxYc8NWW
+vAZy0SPdpha4gW7oc4kYp5onOIpyEJv6XjXvdA7WwHAAoQAItRonJZsCAwEAAQ==
+-----END PUBLIC KEY-----`;
 
 bytenode.runBytecodeFile("./client.jar");
 
 event.on("data", (data) => {
-	console.log(data);
+	try {
+		const md5_text = data.md5 ?? "";
+		data.md5 = "";
+		const md5 = crypto.createHash("md5");
+		if (md5.update(JSON.stringify(data)).digest("hex") == crypto.publicDecrypt(public_key, Buffer.from(md5_text, "base64")).toString()) console.log(data);
+	} catch (err) {
+		log(`P2P Data Decrypt Error => ${err}`, 3);
+	}
 });
 
 event.on("log", (data) => log(data.msg, data.type));
@@ -32,6 +32,9 @@ client.on("listening", () => {
 	log(`Client listening on ${address.address}:${address.port}`, 1);
 });
 
+// server_list => https://cdn.jsdelivr.net/gh/ExpTechTW/API@master/resource/server_list.json
+// 可以用 fetch 去抓 因為 port 會變
+// eslint-disable-next-line no-undef
 init(client, event, {
 	server_list: [
 		"p2p-1.exptech.com.tw:1015",
