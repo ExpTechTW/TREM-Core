@@ -4,6 +4,9 @@
 ------
 
 - TREM-Core 讓 TREM 支援 p2p
+```
+npm i bytenode@1.4.0
+```
 
 ## 索引
 - [文檔](https://github.com/ExpTechTW/TREM-Core/blob/Release/docs.md)
