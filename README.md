@@ -4,6 +4,7 @@
 ------
 
 - TREM-Core 讓 TREM 支援 p2p
+- 環境 Node.js `v18.17.0`
 ```
 npm i bytenode@1.4.0
 ```
